@@ -77,14 +77,62 @@ const SCORERS_RAW: Array<[number, string, Team, Player["position"], string, numb
 
 // ─── Top Scorers ─────────────────────────────────────────────────────────────
 export async function fetchTopScorers(): Promise<LeaderboardEntry[]> {
-  // Retorna vazio até o início da Copa 2026
-  return [];
+  try {
+    const key = process.env.NEXT_PUBLIC_API_FOOTBALL_KEY;
+    if (!key) throw new Error("No API key");
+    const res = await fetch("https://v3.football.api-sports.io/players/topscorers?season=2026&league=1", { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } });
+    if (!res.ok) throw new Error("API request failed");
+    const json = await res.json();
+    if (!json.response || json.response.length === 0) return [];
+    
+    return json.response.map((item: any, index: number) => {
+      const p = item.player;
+      const s = item.statistics[0];
+      const team = TEAMS[s.team.name.substring(0, 3).toUpperCase() as keyof typeof TEAMS] || makeTeam(s.team.id, s.team.name, "UNK", "UEFA");
+      return {
+        rank: index + 1,
+        player: makePlayer(p.id, p.name, team, s.games.position || "Forward", p.nationality, p.age, s.games.number || 0),
+        goals: s.goals.total || 0,
+        assists: s.goals.assists || 0,
+        matches: s.games.appearences || 0,
+        minutesPlayed: s.games.minutes || 0,
+        rating: s.games.rating ? parseFloat(s.games.rating) : 0,
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch scorers", error);
+    return [];
+  }
 }
 
 // ─── Top Assisters ────────────────────────────────────────────────────────────
 export async function fetchTopAssists(): Promise<LeaderboardEntry[]> {
-  // Retorna vazio até o início da Copa 2026
-  return [];
+  try {
+    const key = process.env.NEXT_PUBLIC_API_FOOTBALL_KEY;
+    if (!key) throw new Error("No API key");
+    const res = await fetch("https://v3.football.api-sports.io/players/topassists?season=2026&league=1", { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } });
+    if (!res.ok) throw new Error("API request failed");
+    const json = await res.json();
+    if (!json.response || json.response.length === 0) return [];
+    
+    return json.response.map((item: any, index: number) => {
+      const p = item.player;
+      const s = item.statistics[0];
+      const team = TEAMS[s.team.name.substring(0, 3).toUpperCase() as keyof typeof TEAMS] || makeTeam(s.team.id, s.team.name, "UNK", "UEFA");
+      return {
+        rank: index + 1,
+        player: makePlayer(p.id, p.name, team, s.games.position || "Midfielder", p.nationality, p.age, s.games.number || 0),
+        goals: s.goals.total || 0,
+        assists: s.goals.assists || 0,
+        matches: s.games.appearences || 0,
+        minutesPlayed: s.games.minutes || 0,
+        rating: s.games.rating ? parseFloat(s.games.rating) : 0,
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch assists", error);
+    return [];
+  }
 }
 
 // ─── Player Detail Stats ──────────────────────────────────────────────────────

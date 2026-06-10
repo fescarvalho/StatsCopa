@@ -115,5 +115,49 @@ const RAW_STANDINGS: StandingGroup[] = [
 ];
 
 export async function getStandings(): Promise<StandingGroup[]> {
-  return RAW_STANDINGS;
+  try {
+    const key = process.env.NEXT_PUBLIC_API_FOOTBALL_KEY;
+    if (!key) throw new Error("No API key");
+
+    const res = await fetch(
+      "https://v3.football.api-sports.io/standings?league=1&season=2026",
+      { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } }
+    );
+    if (!res.ok) throw new Error("API request failed");
+    
+    const json = await res.json();
+    if (!json.response || json.response.length === 0 || !json.response[0].league.standings || json.response[0].league.standings.length === 0) {
+      return RAW_STANDINGS; // fallback para zero
+    }
+
+    const groupsArray: any[][] = json.response[0].league.standings;
+    
+    return groupsArray.map((groupEntries: any[]) => {
+      const groupName = groupEntries[0]?.group || "Group";
+      return {
+        group: groupName,
+        entries: groupEntries.map((entry) => {
+          const team = t(entry.team.id) || { id: entry.team.id, name: entry.team.name, shortName: "UNK", logo: entry.team.logo, country: entry.team.name, confederation: "UEFA" };
+          let description: "Qualified" | "Eliminated" | null = null;
+          if (entry.description) {
+            if (entry.description.toLowerCase().includes("promotion") || entry.description.toLowerCase().includes("next")) description = "Qualified";
+            else if (entry.description.toLowerCase().includes("eliminated")) description = "Eliminated";
+          }
+          return {
+            rank: entry.rank,
+            team,
+            points: entry.points,
+            goalsDiff: entry.goalsDiff,
+            group: entry.group,
+            form: entry.form || "---",
+            description,
+            all: entry.all,
+          };
+        }),
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch standings:", error);
+    return RAW_STANDINGS;
+  }
 }

@@ -100,17 +100,6 @@ function generateH2H(teamA: Team, teamB: Team): H2HData {
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 export async function fetchH2H(teamAId: number, teamBId: number): Promise<H2HData> {
-  /**
-   * Em produção:
-   * const res = await fetch(
-   *   `https://v3.football.api-sports.io/fixtures/headtohead?h2h=${teamAId}-${teamBId}&season=2026&league=1`,
-   *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
-   * );
-   */
-  const key = `${teamAId}-${teamBId}`;
-  const reverseKey = `${teamBId}-${teamAId}`;
-  const raw = H2H_HISTORY[key] ?? H2H_HISTORY[reverseKey];
-
   let teamA = ALL_WC2026_TEAMS.find((t) => t.id === teamAId)!;
   let teamB = ALL_WC2026_TEAMS.find((t) => t.id === teamBId)!;
 
@@ -119,22 +108,79 @@ export async function fetchH2H(teamAId: number, teamBId: number): Promise<H2HDat
     teamB = ALL_WC2026_TEAMS[1];
   }
 
-  return {
-    teamA, teamB,
-    totalMatches: 0,
-    teamARecord: {
-      wins: 0, draws: 0, losses: 0,
-      goalsScored: 0,
-      goalsConceded: 0,
-      cleanSheets: 0,
-    },
-    teamBRecord: {
-      wins: 0, draws: 0, losses: 0,
-      goalsScored: 0,
-      goalsConceded: 0,
-      cleanSheets: 0,
-    },
-    recentMatches: [],
-    lastMeeting: undefined,
-  };
+  try {
+    const key = process.env.NEXT_PUBLIC_API_FOOTBALL_KEY;
+    if (!key) throw new Error("No API key");
+
+    const res = await fetch(
+      `https://v3.football.api-sports.io/fixtures/headtohead?h2h=${teamA.id}-${teamB.id}`,
+      { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } }
+    );
+    if (!res.ok) throw new Error("API request failed");
+    
+    const json = await res.json();
+    if (!json.response || json.response.length === 0) throw new Error("Empty H2H");
+
+    const matches = json.response;
+    
+    let winsA = 0, draws = 0, winsB = 0;
+    let goalsA = 0, goalsB = 0;
+    let cleanSheetsA = 0, cleanSheetsB = 0;
+
+    const recentMatches: HistoricalMatch[] = matches.map((m: any) => {
+      const homeId = m.teams.home.id;
+      const awayId = m.teams.away.id;
+      const isATeamHome = homeId === teamA.id;
+      
+      const homeGoals = m.goals.home ?? 0;
+      const awayGoals = m.goals.away ?? 0;
+
+      if (isATeamHome) {
+        goalsA += homeGoals;
+        goalsB += awayGoals;
+        if (homeGoals > awayGoals) winsA++;
+        else if (homeGoals < awayGoals) winsB++;
+        else draws++;
+        if (awayGoals === 0) cleanSheetsA++;
+        if (homeGoals === 0) cleanSheetsB++;
+      } else {
+        goalsA += awayGoals;
+        goalsB += homeGoals;
+        if (awayGoals > homeGoals) winsA++;
+        else if (awayGoals < homeGoals) winsB++;
+        else draws++;
+        if (homeGoals === 0) cleanSheetsA++;
+        if (awayGoals === 0) cleanSheetsB++;
+      }
+
+      return {
+        id: m.fixture.id,
+        date: m.fixture.date,
+        tournament: m.league.name,
+        homeTeam: isATeamHome ? teamA : teamB,
+        awayTeam: isATeamHome ? teamB : teamA,
+        score: { home: homeGoals, away: awayGoals },
+        winner: m.teams.home.winner ? "home" : m.teams.away.winner ? "away" : "draw"
+      };
+    });
+
+    return {
+      teamA, teamB,
+      totalMatches: matches.length,
+      teamARecord: { wins: winsA, draws, losses: winsB, goalsScored: goalsA, goalsConceded: goalsB, cleanSheets: cleanSheetsA },
+      teamBRecord: { wins: winsB, draws, losses: winsA, goalsScored: goalsB, goalsConceded: goalsA, cleanSheets: cleanSheetsB },
+      recentMatches,
+      lastMeeting: recentMatches[0]
+    };
+  } catch (error) {
+    console.error("Failed to fetch H2H:", error);
+    return {
+      teamA, teamB,
+      totalMatches: 0,
+      teamARecord: { wins: 0, draws: 0, losses: 0, goalsScored: 0, goalsConceded: 0, cleanSheets: 0 },
+      teamBRecord: { wins: 0, draws: 0, losses: 0, goalsScored: 0, goalsConceded: 0, cleanSheets: 0 },
+      recentMatches: [],
+      lastMeeting: undefined,
+    };
+  }
 }

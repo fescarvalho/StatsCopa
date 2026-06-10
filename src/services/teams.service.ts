@@ -144,20 +144,62 @@ export async function getTeams() {
 }
 
 export async function getTeamProfile(teamId: number): Promise<TeamProfile | null> {
-  /**
-   * Em produção:
-   * const [teamRes, statsRes, squadRes] = await Promise.all([
-   *   fetch(`/teams?id=${teamId}&season=2026&league=1`, ...),
-   *   fetch(`/teams/statistics?team=${teamId}&season=2026&league=1`, ...),
-   *   fetch(`/players/squads?team=${teamId}`, ...),
-   * ]);
-   */
   const team = ALL_WC2026_TEAMS.find((t) => t.id === teamId);
   if (!team) return null;
 
-  const raw = SQUADS[teamId];
-  if (!raw) {
-    // Perfil genérico para times sem elenco detalhado
+  try {
+    const key = process.env.NEXT_PUBLIC_API_FOOTBALL_KEY;
+    if (!key) throw new Error("No API key");
+
+    const [statsRes, squadRes] = await Promise.all([
+      fetch(`https://v3.football.api-sports.io/teams/statistics?team=${teamId}&season=2026&league=1`, { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } }),
+      fetch(`https://v3.football.api-sports.io/players/squads?team=${teamId}`, { headers: { "x-apisports-key": key }, next: { revalidate: 43200 } })
+    ]);
+
+    const statsJson = statsRes.ok ? await statsRes.json() : null;
+    const squadJson = squadRes.ok ? await squadRes.json() : null;
+
+    const s = statsJson?.response;
+    const sq = squadJson?.response?.[0]?.players || [];
+
+    const squad: SquadPlayer[] = sq.map((p: any) => ({
+      id: p.id,
+      name: p.name,
+      number: p.number || 0,
+      position: p.position || "Midfielder",
+      age: p.age || 0,
+      nationality: team.country,
+      photo: p.photo,
+      goals: 0,
+      assists: 0,
+      minutesPlayed: 0,
+      rating: 0,
+    }));
+
+    return {
+      team,
+      coach: "—", // API não dá coach no endpoint de stats/squads com facilidade
+      formation: s?.lineups?.[0]?.formation || "—",
+      stats: {
+        played: s?.fixtures?.played?.total || 0,
+        wins: s?.fixtures?.wins?.total || 0,
+        draws: s?.fixtures?.draws?.total || 0,
+        losses: s?.fixtures?.loses?.total || 0,
+        goalsFor: s?.goals?.for?.total?.total || 0,
+        goalsAgainst: s?.goals?.against?.total?.total || 0,
+        goalsDiff: (s?.goals?.for?.total?.total || 0) - (s?.goals?.against?.total?.total || 0),
+        points: (s?.fixtures?.wins?.total || 0) * 3 + (s?.fixtures?.draws?.total || 0),
+        avgPossession: 0, // A API de stats do time não dá posse média diretamente
+        avgShotsOnTarget: 0,
+        avgPassAccuracy: 0,
+        cleanSheets: s?.clean_sheet?.total || 0,
+        yellowCards: Object.values(s?.cards?.yellow || {}).reduce((acc: any, val: any) => acc + (val.total || 0), 0) as number,
+        redCards: Object.values(s?.cards?.red || {}).reduce((acc: any, val: any) => acc + (val.total || 0), 0) as number,
+      },
+      squad,
+    };
+  } catch (error) {
+    console.error("Failed to fetch team profile:", error);
     return {
       team,
       coach: "—",
@@ -171,28 +213,4 @@ export async function getTeamProfile(teamId: number): Promise<TeamProfile | null
       squad: [],
     };
   }
-
-  return {
-    team,
-    coach: raw.coach,
-    formation: raw.formation,
-    stats: {
-      played: 0,
-      wins: 0,
-      draws: 0,
-      losses: 0,
-      goalsFor: 0,
-      goalsAgainst: 0,
-      goalsDiff: 0,
-      points: 0,
-      avgPossession: 0,
-      avgShotsOnTarget: 0,
-      avgPassAccuracy: 0,
-      cleanSheets: 0,
-      yellowCards: 0,
-      redCards: 0,
-    },
-    // Esconde o elenco até ser oficialmente convocado/iniciar a copa
-    squad: [],
-  };
 }
