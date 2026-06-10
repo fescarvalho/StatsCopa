@@ -111,33 +111,30 @@ export async function fetchH2H(teamAId: number, teamBId: number): Promise<H2HDat
   const reverseKey = `${teamBId}-${teamAId}`;
   const raw = H2H_HISTORY[key] ?? H2H_HISTORY[reverseKey];
 
-  const teamA = ALL_WC2026_TEAMS.find((t) => t.id === teamAId)!;
-  const teamB = ALL_WC2026_TEAMS.find((t) => t.id === teamBId)!;
+  let teamA = ALL_WC2026_TEAMS.find((t) => t.id === teamAId)!;
+  let teamB = ALL_WC2026_TEAMS.find((t) => t.id === teamBId)!;
 
-  if (!teamA || !teamB) return generateH2H(ALL_WC2026_TEAMS[0], ALL_WC2026_TEAMS[1]);
-
-  if (!raw) return generateH2H(teamA, teamB);
-
-  const isReversed = H2H_HISTORY[reverseKey] && !H2H_HISTORY[key];
-  const winsA = isReversed ? raw.totalB : raw.totalA;
-  const winsB = isReversed ? raw.totalA : raw.totalB;
+  if (!teamA || !teamB) {
+    teamA = ALL_WC2026_TEAMS[0];
+    teamB = ALL_WC2026_TEAMS[1];
+  }
 
   return {
     teamA, teamB,
-    totalMatches: raw.totalA + raw.totalD + raw.totalB,
+    totalMatches: 0,
     teamARecord: {
-      wins: winsA, draws: raw.totalD, losses: winsB,
-      goalsScored: raw.matches.reduce((s, m) => s + (m.homeTeam.id === teamAId ? m.score.home : m.score.away), 0),
-      goalsConceded: raw.matches.reduce((s, m) => s + (m.homeTeam.id === teamAId ? m.score.away : m.score.home), 0),
-      cleanSheets: raw.matches.filter((m) => (m.homeTeam.id === teamAId ? m.score.away : m.score.home) === 0).length,
+      wins: 0, draws: 0, losses: 0,
+      goalsScored: 0,
+      goalsConceded: 0,
+      cleanSheets: 0,
     },
     teamBRecord: {
-      wins: winsB, draws: raw.totalD, losses: winsA,
-      goalsScored: raw.matches.reduce((s, m) => s + (m.homeTeam.id === teamBId ? m.score.home : m.score.away), 0),
-      goalsConceded: raw.matches.reduce((s, m) => s + (m.homeTeam.id === teamBId ? m.score.away : m.score.home), 0),
-      cleanSheets: raw.matches.filter((m) => (m.homeTeam.id === teamBId ? m.score.away : m.score.home) === 0).length,
+      wins: 0, draws: 0, losses: 0,
+      goalsScored: 0,
+      goalsConceded: 0,
+      cleanSheets: 0,
     },
-    recentMatches: raw.matches,
-    lastMeeting: raw.matches[0],
+    recentMatches: [],
+    lastMeeting: undefined,
   };
 }

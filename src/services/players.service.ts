@@ -77,106 +77,18 @@ const SCORERS_RAW: Array<[number, string, Team, Player["position"], string, numb
 
 // ─── Top Scorers ─────────────────────────────────────────────────────────────
 export async function fetchTopScorers(): Promise<LeaderboardEntry[]> {
-  /**
-   * Production fetch (replace mock below):
-   *
-   * const res = await fetch(
-   *   "https://v3.football.api-sports.io/players/topscorers?season=2026&league=1",
-   *   {
-   *     headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! },
-   *     next: { revalidate: 43200 },
-   *   }
-   * );
-   */
-
-  return SCORERS_RAW.map(([id, name, team, position, nationality, age, number, goals, assists], index) => ({
-    rank: index + 1,
-    player: makePlayer(id, name, team, position, nationality, age, number),
-    goals,
-    assists,
-    matches: Math.floor(Math.random() * 3) + 4,
-    minutesPlayed: (Math.floor(Math.random() * 2) + 4) * 90,
-    rating: parseFloat((7.5 + Math.random() * 2).toFixed(1)),
-  }));
+  // Retorna vazio até o início da Copa 2026
+  return [];
 }
 
 // ─── Top Assisters ────────────────────────────────────────────────────────────
 export async function fetchTopAssists(): Promise<LeaderboardEntry[]> {
-  const scorers = await fetchTopScorers();
-  // Reorder by assists for assists leaderboard
-  return [...scorers]
-    .sort((a, b) => b.assists - a.assists)
-    .map((entry, index) => ({ ...entry, rank: index + 1 }));
+  // Retorna vazio até o início da Copa 2026
+  return [];
 }
 
 // ─── Player Detail Stats ──────────────────────────────────────────────────────
 export async function fetchPlayerStats(playerId: number): Promise<PlayerStats | null> {
-  /**
-   * Production fetch:
-   *
-   * const res = await fetch(
-   *   `https://v3.football.api-sports.io/players?id=${playerId}&season=2026&league=1`,
-   *   {
-   *     headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! },
-   *     next: { revalidate: 43200 },
-   *   }
-   * );
-   */
-
-  const entry = SCORERS_RAW.find(([id]) => id === playerId);
-  if (!entry) return null;
-
-  const [id, name, team, position, nationality, age, number, goals, assists] = entry;
-  const player = makePlayer(id, name, team, position, nationality, age, number);
-
-  // Deterministic pseudo-random stats from player id
-  const seed = id % 100;
-
-  return {
-    player,
-    tournament: "FIFA World Cup 2026",
-    season: "2026",
-    gamesPlayed: 5 + (seed % 3),
-    minutesPlayed: (5 + (seed % 3)) * 90 - (seed % 20),
-    rating: parseFloat((7.5 + (seed % 25) / 100).toFixed(1)),
-    offensive: {
-      goals,
-      assists,
-      shots: 12 + (seed % 10),
-      shotsOnTarget: 7 + (seed % 6),
-      shotsOnTargetPct: 50 + (seed % 30),
-      dribbles: 15 + (seed % 20),
-      dribblesSucceeded: 9 + (seed % 12),
-      dribbleSuccessPct: 55 + (seed % 30),
-      penaltyGoals: seed % 2,
-      penaltyMissed: 0,
-      hatTricks: goals >= 4 ? 1 : 0,
-      minutesPerGoal: goals > 0 ? Math.round(((5 + (seed % 3)) * 90) / goals) : 999,
-    },
-    creation: {
-      keyPasses: 8 + (seed % 12),
-      chanceCreated: 12 + (seed % 15),
-      bigChancesCreated: 3 + (seed % 5),
-      crosses: 10 + (seed % 20),
-      crossAccuracy: 30 + (seed % 40),
-      throughballs: 4 + (seed % 6),
-      passAccuracy: 78 + (seed % 15),
-      longBallAccuracy: 60 + (seed % 25),
-      progressivePasses: 20 + (seed % 30),
-    },
-    defensive: {
-      tackles: 5 + (seed % 15),
-      tacklesSucceeded: 3 + (seed % 10),
-      tackleSuccessPct: 50 + (seed % 35),
-      interceptions: 3 + (seed % 8),
-      blocks: 2 + (seed % 5),
-      clearances: seed % 8,
-      aerialDuelsWon: 5 + (seed % 10),
-      aerialDuelsTotal: 10 + (seed % 15),
-      aerialSuccessPct: 40 + (seed % 35),
-      foulsCommitted: 3 + (seed % 8),
-      yellowCards: seed % 3,
-      redCards: 0,
-    },
-  };
+  // Retorna null pois não há estatísticas reais de 2026 ainda
+  return null;
 }

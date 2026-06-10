@@ -97,5 +97,17 @@ export async function getStandings(): Promise<StandingGroup[]> {
    * const json = await res.json();
    * return transformStandings(json.response[0].league.standings);
    */
-  return RAW_STANDINGS;
+  
+  // Zera os dados até a copa de 2026 começar
+  return RAW_STANDINGS.map((group) => ({
+    ...group,
+    entries: group.entries.map((entry) => ({
+      ...entry,
+      points: 0,
+      goalsDiff: 0,
+      form: "---",
+      description: null,
+      all: { played: 0, win: 0, draw: 0, lose: 0, goals: { for: 0, against: 0 } },
+    })).sort((a, b) => a.team.name.localeCompare(b.team.name)) // ordem alfabética provisória
+  }));
 }

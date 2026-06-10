@@ -155,33 +155,35 @@ export async function getFixtures(): Promise<MatchFixture[]> {
    *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
    * );
    */
-  return FIXTURES;
+  return FIXTURES.map((f) => ({
+    ...f,
+    status: "NS",
+    statusShort: "NS",
+    score: { fulltime: { home: 0, away: 0 }, halftime: { home: 0, away: 0 }, extratime: null, penalty: null },
+    winner: null,
+  }));
 }
 
 export async function getFixtureById(id: number): Promise<MatchFixture | null> {
-  return FIXTURES.find((f) => f.id === id) ?? null;
+  const f = FIXTURES.find((x) => x.id === id);
+  if (!f) return null;
+  return {
+    ...f,
+    status: "NS",
+    statusShort: "NS",
+    score: { fulltime: { home: 0, away: 0 }, halftime: { home: 0, away: 0 }, extratime: null, penalty: null },
+    winner: null,
+  };
 }
 
 export async function getMatchLineup(fixtureId: number): Promise<MatchLineup | null> {
-  /**
-   * Em produção:
-   * const res = await fetch(
-   *   `https://v3.football.api-sports.io/fixtures/lineups?fixture=${fixtureId}`,
-   *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
-   * );
-   */
-  return LINEUPS[fixtureId] ?? null;
+  // Retorna nulo pois o jogo ainda não aconteceu e as escalações não saíram
+  return null;
 }
 
 export async function getMatchStats(fixtureId: number): Promise<MatchStats | null> {
-  /**
-   * Em produção:
-   * const res = await fetch(
-   *   `https://v3.football.api-sports.io/fixtures/statistics?fixture=${fixtureId}`,
-   *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
-   * );
-   */
-  return MATCH_STATS[fixtureId] ?? null;
+  // Retorna nulo pois não há estatísticas de jogo não iniciado
+  return null;
 }
 
 export { FIXTURES };

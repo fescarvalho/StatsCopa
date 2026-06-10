@@ -161,51 +161,38 @@ export async function getTeamProfile(teamId: number): Promise<TeamProfile | null
     return {
       team,
       coach: "—",
-      formation: "4-4-2",
+      formation: "—",
       stats: {
-        played: 3, wins: 1, draws: 0, losses: 2,
-        goalsFor: 2, goalsAgainst: 5, goalsDiff: -3,
-        points: 3, avgPossession: 45, avgShotsOnTarget: 3,
-        avgPassAccuracy: 76, cleanSheets: 0, yellowCards: 5, redCards: 0,
+        played: 0, wins: 0, draws: 0, losses: 0,
+        goalsFor: 0, goalsAgainst: 0, goalsDiff: 0,
+        points: 0, avgPossession: 0, avgShotsOnTarget: 0,
+        avgPassAccuracy: 0, cleanSheets: 0, yellowCards: 0, redCards: 0,
       },
       squad: [],
     };
   }
-
-  const squad: SquadPlayer[] = raw.players.map(([id, name, number, position, age, goals, assists, minutesPlayed]) => ({
-    id,
-    name,
-    number,
-    position,
-    age,
-    nationality: team.country,
-    photo: `https://media.api-sports.io/football/players/${id}.png`,
-    goals,
-    assists,
-    minutesPlayed,
-    rating: parseFloat((7 + (id % 30) / 10).toFixed(1)),
-  }));
 
   return {
     team,
     coach: raw.coach,
     formation: raw.formation,
     stats: {
-      played: 7,
-      wins: 4,
-      draws: 2,
-      losses: 1,
-      goalsFor: 15,
-      goalsAgainst: 7,
-      goalsDiff: 8,
-      points: 14,
-      avgPossession: raw.avgPossession,
-      avgShotsOnTarget: raw.avgShots,
-      avgPassAccuracy: raw.avgPass,
-      cleanSheets: raw.cleanSheets,
-      yellowCards: raw.yellow,
-      redCards: raw.red,
+      played: 0,
+      wins: 0,
+      draws: 0,
+      losses: 0,
+      goalsFor: 0,
+      goalsAgainst: 0,
+      goalsDiff: 0,
+      points: 0,
+      avgPossession: 0,
+      avgShotsOnTarget: 0,
+      avgPassAccuracy: 0,
+      cleanSheets: 0,
+      yellowCards: 0,
+      redCards: 0,
     },
-    squad,
+    // Esconde o elenco até ser oficialmente convocado/iniciar a copa
+    squad: [],
   };
 }
