@@ -19,10 +19,10 @@ const POS_LABELS: Record<string, string> = {
   Forward: "Atacantes",
 };
 const POS_COLORS: Record<string, string> = {
-  Goalkeeper: "#fbbf24",
-  Defender: "#34d399",
-  Midfielder: "#22d3ee",
-  Forward: "#f43f5e",
+  Goalkeeper: "var(--text-primary)",
+  Defender: "var(--text-secondary)",
+  Midfielder: "var(--accent-amber)",
+  Forward: "var(--accent-primary)",
 };
 
 export function SquadList({ squad, team }: SquadListProps) {
@@ -83,7 +83,7 @@ export function SquadList({ squad, team }: SquadListProps) {
 
                     {/* Foto */}
                     <div
-                      className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0"
+                      className="relative w-10 h-10 rounded-md overflow-hidden shrink-0"
                       style={{ background: "var(--border-default)" }}
                     >
                       <Image
@@ -122,13 +122,13 @@ export function SquadList({ squad, team }: SquadListProps) {
                     {/* Stats */}
                     <div className="flex items-center gap-4 shrink-0">
                       <div className="text-center">
-                        <p className="text-sm font-bold" style={{ color: "var(--accent-cyan)" }}>
+                        <p className="text-sm font-bold tabular-nums" style={{ color: "var(--accent-primary)" }}>
                           {player.goals}
                         </p>
                         <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>Gols</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm font-bold" style={{ color: "var(--accent-violet)" }}>
+                        <p className="text-sm font-bold tabular-nums" style={{ color: "var(--text-secondary)" }}>
                           {player.assists}
                         </p>
                         <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>Ass.</p>

@@ -20,12 +20,9 @@ export function StandingsGroupCard({ group, index }: StandingsGroupProps) {
       {/* Header */}
       <div
         className="px-4 py-2.5 flex items-center gap-2"
-        style={{
-          borderBottom: "1px solid var(--border-subtle)",
-          background: "linear-gradient(90deg, rgba(34,211,238,0.06), transparent)",
-        }}
+        style={{ borderBottom: "1px solid var(--border-subtle)", background: "var(--bg-surface)" }}
       >
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--accent-cyan)" }}>
+        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--text-primary)" }}>
           {group.group}
         </span>
       </div>
@@ -63,13 +60,13 @@ export function StandingsGroupCard({ group, index }: StandingsGroupProps) {
               gridTemplateColumns: "28px 1fr 28px 28px 28px 28px 28px 36px",
               gap: "4px",
               borderBottom: i < group.entries.length - 1 ? "1px solid var(--border-subtle)" : "none",
-              background: isTop2 ? "rgba(34, 211, 238, 0.03)" : "transparent",
+              background: isTop2 ? "var(--bg-surface)" : "transparent",
             }}
           >
             {/* Rank */}
             <span
               className="text-sm font-bold text-center tabular-nums"
-              style={{ color: isTop2 ? "var(--accent-cyan)" : "var(--text-muted)" }}
+              style={{ color: isTop2 ? "var(--text-primary)" : "var(--text-muted)" }}
             >
               {entry.rank}
             </span>
@@ -78,8 +75,8 @@ export function StandingsGroupCard({ group, index }: StandingsGroupProps) {
             <div className="flex items-center gap-2 min-w-0">
               {isTop2 && (
                 <div
-                  className="shrink-0 w-0.5 h-6 rounded-full"
-                  style={{ background: "var(--accent-cyan)" }}
+                  className="shrink-0 w-0.5 h-6 rounded-md"
+                  style={{ background: "var(--accent-primary)" }}
                 />
               )}
               <div className="relative w-6 h-6 shrink-0">
@@ -119,10 +116,10 @@ export function StandingsGroupCard({ group, index }: StandingsGroupProps) {
             {/* Points */}
             <div className="flex justify-center">
               <span
-                className="text-sm font-black tabular-nums px-1.5 py-0.5 rounded-lg"
+                className="text-sm font-bold tabular-nums px-1.5 py-0.5 rounded-sm"
                 style={{
-                  background: isTop2 ? "rgba(34,211,238,0.12)" : "var(--border-subtle)",
-                  color: isTop2 ? "var(--accent-cyan)" : "var(--text-primary)",
+                  background: isTop2 ? "var(--border-subtle)" : "transparent",
+                  color: "var(--text-primary)",
                   minWidth: 28,
                   textAlign: "center",
                   display: "inline-block",

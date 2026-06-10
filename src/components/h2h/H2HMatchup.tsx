@@ -33,7 +33,7 @@ function MatchResult({
 
   return (
     <span
-      className="inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold"
+      className="inline-flex items-center justify-center w-7 h-7 rounded-md text-xs font-bold"
       style={outcomeColors[outcome]}
     >
       {outcome}
@@ -59,7 +59,7 @@ function StatRow({
     >
       <span
         className="text-base font-bold tabular-nums"
-        style={{ color: highlight === "A" ? "var(--accent-cyan)" : "var(--text-primary)" }}
+        style={{ color: highlight === "A" ? "var(--accent-primary)" : "var(--text-primary)" }}
       >
         {valueA}
       </span>
@@ -71,7 +71,7 @@ function StatRow({
       </span>
       <span
         className="text-base font-bold tabular-nums"
-        style={{ color: highlight === "B" ? "var(--accent-violet)" : "var(--text-primary)" }}
+        style={{ color: highlight === "B" ? "var(--text-secondary)" : "var(--text-primary)" }}
       >
         {valueB}
       </span>
@@ -102,15 +102,6 @@ export function H2HMatchup({ data }: H2HMatchupProps) {
     >
       {/* ── Shield vs Shield ── */}
       <div className="card p-5 relative overflow-hidden">
-        {/* Glow blobs */}
-        <div
-          className="absolute -top-12 -left-12 w-32 h-32 rounded-full blur-3xl opacity-20"
-          style={{ background: "var(--accent-cyan)" }}
-        />
-        <div
-          className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl opacity-15"
-          style={{ background: "var(--accent-violet)" }}
-        />
 
         <div className="flex items-center justify-between relative z-10">
           {/* Team A */}
@@ -121,12 +112,12 @@ export function H2HMatchup({ data }: H2HMatchupProps) {
             transition={{ delay: 0.1, duration: 0.4 }}
           >
             <div
-              className="relative flex items-center justify-center rounded-2xl"
+              className="relative flex items-center justify-center rounded-md"
               style={{
                 width: 80,
                 height: 80,
-                background: "rgba(34, 211, 238, 0.08)",
-                border: "1px solid rgba(34, 211, 238, 0.2)",
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-subtle)",
               }}
             >
               <Image
@@ -171,12 +162,12 @@ export function H2HMatchup({ data }: H2HMatchupProps) {
             transition={{ delay: 0.1, duration: 0.4 }}
           >
             <div
-              className="relative flex items-center justify-center rounded-2xl"
+              className="relative flex items-center justify-center rounded-md"
               style={{
                 width: 80,
                 height: 80,
-                background: "rgba(139, 92, 246, 0.08)",
-                border: "1px solid rgba(139, 92, 246, 0.2)",
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-subtle)",
               }}
             >
               <Image
@@ -322,7 +313,7 @@ export function H2HMatchup({ data }: H2HMatchupProps) {
                 </div>
 
                 <span
-                  className="text-xs px-2 py-1 rounded-full shrink-0"
+                  className="text-xs px-2 py-1 rounded-md shrink-0"
                   style={{
                     background: "var(--border-subtle)",
                     color: "var(--text-muted)",

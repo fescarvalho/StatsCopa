@@ -28,7 +28,7 @@ export function DominanceBar({
       <div className="flex justify-between items-center mb-2">
         <span
           className="text-sm font-semibold"
-          style={{ color: "var(--accent-cyan)" }}
+          style={{ color: "var(--accent-primary)" }}
         >
           {winsA}V
         </span>
@@ -37,7 +37,7 @@ export function DominanceBar({
         </span>
         <span
           className="text-sm font-semibold"
-          style={{ color: "var(--accent-violet)" }}
+          style={{ color: "var(--text-primary)" }}
         >
           {winsB}V
         </span>
@@ -45,28 +45,28 @@ export function DominanceBar({
 
       {/* Bar */}
       <div
-        className="flex w-full rounded-full overflow-hidden"
-        style={{ height: "10px", gap: "2px" }}
+        className="flex w-full rounded-md overflow-hidden"
+        style={{ height: "8px", gap: "2px" }}
       >
         <div
-          className="transition-all duration-700 ease-out rounded-l-full"
+          className="transition-all duration-700 ease-out rounded-l-md"
           style={{
             width: `${pctA}%`,
-            background: "linear-gradient(90deg, #0891b2, #22d3ee)",
+            background: "var(--accent-primary)",
           }}
         />
         <div
           className="transition-all duration-700 ease-out"
           style={{
             width: `${pctD}%`,
-            background: "linear-gradient(90deg, #404040, #525252)",
+            background: "var(--border-strong)",
           }}
         />
         <div
-          className="transition-all duration-700 ease-out rounded-r-full"
+          className="transition-all duration-700 ease-out rounded-r-md"
           style={{
             width: `${pctB}%`,
-            background: "linear-gradient(90deg, #6d28d9, #8b5cf6)",
+            background: "var(--text-secondary)",
           }}
         />
       </div>

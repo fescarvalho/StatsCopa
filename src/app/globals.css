@@ -19,18 +19,20 @@
   --text-secondary: #a3a3a3;
   --text-muted: #525252;
 
-  --accent-cyan: #22d3ee;
-  --accent-cyan-dim: #0891b2;
-  --accent-violet: #8b5cf6;
-  --accent-violet-dim: #6d28d9;
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
-  --accent-rose: #f43f5e;
+  --accent-cyan: #0ea5e9; /* Sky blue */
+  --accent-cyan-dim: #0284c7;
+  --accent-violet: #6366f1; /* Indigo */
+  --accent-violet-dim: #4f46e5;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #e11d48;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --accent-primary: #10b981; /* Emerald/Green para a maioria das métricas */
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
 }
 
 /* ─── Tailwind v4 Theme ─────────────────────────────────────────────────────── */
@@ -87,37 +89,7 @@ body {
   border: 1px solid var(--border-subtle);
 }
 
-.gradient-text-cyan {
-  background: linear-gradient(135deg, var(--accent-cyan) 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-violet {
-  background: linear-gradient(135deg, var(--accent-violet) 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2), 0 0 60px rgba(34, 211, 238, 0.08);
-}
-
-.glow-violet {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.08);
-}
-
-/* ─── Noise Texture Overlay ─────────────────────────────────────────────────── */
-.noise::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
-}
+/* --- Removidos glows neon e noise --- */
 
 /* ─── Card Base ─────────────────────────────────────────────────────────────── */
 .card {
@@ -143,8 +115,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
-  border-radius: 999px;
+  background: var(--text-primary);
 }
 
 /* ─── Bottom Sheet / Drawer ─────────────────────────────────────────────────── */
@@ -188,10 +159,7 @@ body {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
-/* ─── Gradient mesh background ──────────────────────────────────────────────── */
+/* ─── Gradient mesh removido ──────────────────────────────────────────────── */
 .mesh-bg {
-  background:
-    radial-gradient(ellipse 80% 40% at 20% 0%, rgba(34, 211, 238, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
-    var(--bg-base);
+  background: var(--bg-base);
 }

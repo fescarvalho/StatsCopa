@@ -15,24 +15,24 @@ interface StatProgressProps {
 
 const VARIANT_COLORS = {
   cyan: {
-    fill: "linear-gradient(90deg, #0891b2, #22d3ee)",
-    text: "#22d3ee",
-    bg: "rgba(34, 211, 238, 0.08)",
+    fill: "#10b981",
+    text: "#10b981",
+    bg: "rgba(16, 185, 129, 0.1)",
   },
   violet: {
-    fill: "linear-gradient(90deg, #6d28d9, #8b5cf6)",
-    text: "#8b5cf6",
-    bg: "rgba(139, 92, 246, 0.08)",
+    fill: "#64748b",
+    text: "#64748b",
+    bg: "rgba(148, 163, 184, 0.1)",
   },
   emerald: {
-    fill: "linear-gradient(90deg, #059669, #34d399)",
-    text: "#34d399",
-    bg: "rgba(52, 211, 153, 0.08)",
+    fill: "#10b981",
+    text: "#10b981",
+    bg: "rgba(16, 185, 129, 0.1)",
   },
   amber: {
-    fill: "linear-gradient(90deg, #d97706, #fbbf24)",
-    text: "#fbbf24",
-    bg: "rgba(251, 191, 36, 0.08)",
+    fill: "#f59e0b",
+    text: "#f59e0b",
+    bg: "rgba(245, 158, 11, 0.1)",
   },
 };
 
@@ -55,7 +55,7 @@ export function StatProgress({
         <div className="flex items-center gap-2">
           {showRank && rank !== undefined && (
             <span
-              className="text-xs font-bold tabular-nums px-1.5 py-0.5 rounded"
+              className="text-xs font-bold tabular-nums px-1.5 py-0.5 rounded-sm"
               style={{ background: colors.bg, color: colors.text }}
             >
               #{rank}
@@ -72,11 +72,11 @@ export function StatProgress({
 
       {/* Track */}
       <div
-        className="w-full rounded-full overflow-hidden"
-        style={{ height: "6px", background: "var(--border-default)" }}
+        className="w-full rounded-md overflow-hidden"
+        style={{ height: "6px", background: colors.bg }}
       >
         <motion.div
-          className="h-full rounded-full"
+          className="h-full rounded-md"
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}

@@ -12,45 +12,45 @@ const NAV_ITEMS = [
     emoji: "🏆",
     title: "Classificação",
     description: "Tabela de grupos · Fase final",
-    accent: "#22d3ee",
-    accentBg: "rgba(34, 211, 238, 0.08)",
-    accentBorder: "rgba(34, 211, 238, 0.2)",
+    accent: "var(--text-secondary)",
+    accentBg: "var(--bg-surface)",
+    accentBorder: "var(--border-subtle)",
   },
   {
     href: "/jogadores",
     emoji: "🏅",
     title: "Artilheiros",
     description: "Top 20 Gols & Assistências",
-    accent: "#8b5cf6",
-    accentBg: "rgba(139, 92, 246, 0.08)",
-    accentBorder: "rgba(139, 92, 246, 0.2)",
+    accent: "var(--text-secondary)",
+    accentBg: "var(--bg-surface)",
+    accentBorder: "var(--border-subtle)",
   },
   {
     href: "/h2h",
     emoji: "⚔️",
     title: "Confronto Direto",
     description: "H2H histórico entre seleções",
-    accent: "#34d399",
-    accentBg: "rgba(52, 211, 153, 0.08)",
-    accentBorder: "rgba(52, 211, 153, 0.2)",
+    accent: "var(--text-secondary)",
+    accentBg: "var(--bg-surface)",
+    accentBorder: "var(--border-subtle)",
   },
   {
     href: "/selecoes",
     emoji: "🌍",
     title: "Seleções",
-    description: "32 seleções · Elencos completos",
-    accent: "#fbbf24",
-    accentBg: "rgba(251, 191, 36, 0.08)",
-    accentBorder: "rgba(251, 191, 36, 0.2)",
+    description: "48 seleções · Elencos completos",
+    accent: "var(--text-secondary)",
+    accentBg: "var(--bg-surface)",
+    accentBorder: "var(--border-subtle)",
   },
   {
     href: "/jogos",
     emoji: "📅",
     title: "Jogos",
     description: "Resultados · Escalações · Stats",
-    accent: "#f43f5e",
-    accentBg: "rgba(244, 63, 94, 0.08)",
-    accentBorder: "rgba(244, 63, 94, 0.2)",
+    accent: "var(--text-secondary)",
+    accentBg: "var(--bg-surface)",
+    accentBorder: "var(--border-subtle)",
   },
 ];
 
@@ -60,60 +60,44 @@ export default function HomePage() {
       {/* Hero */}
       <section className="flex flex-col items-center text-center pt-14 pb-8">
         <div
-          className="flex items-center justify-center mb-5 rounded-3xl"
+          className="flex items-center justify-center mb-5 rounded-lg"
           style={{
-            width: 90,
-            height: 90,
-            background: "linear-gradient(135deg, rgba(34,211,238,0.12), rgba(139,92,246,0.12))",
-            border: "1px solid rgba(34,211,238,0.2)",
-            fontSize: 48,
+            width: 80,
+            height: 80,
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-default)",
+            fontSize: 40,
           }}
         >
-          🏆
+          ⚽
         </div>
 
         <div
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full mb-3 text-xs font-semibold"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md mb-3 text-xs font-medium"
           style={{
-            background: "rgba(34, 211, 238, 0.08)",
-            border: "1px solid rgba(34, 211, 238, 0.2)",
-            color: "var(--accent-cyan)",
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-subtle)",
+            color: "var(--text-secondary)",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-cyan)" }} />
-          Copa do Mundo FIFA · Qatar 2026
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-primary)" }} />
+          Copa do Mundo FIFA 2026
         </div>
 
-        <h1
-          className="text-4xl font-black tracking-tight leading-none mb-2"
-          style={{
-            background: "linear-gradient(135deg, #fafafa 0%, #a3a3a3 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          Stats
-          <span
-            style={{
-              background: "linear-gradient(135deg, var(--accent-cyan), var(--accent-violet))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Copa
-          </span>
+        <h1 className="text-4xl font-bold tracking-tight leading-none mb-2 text-white">
+          StatsCopa
         </h1>
 
         <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-          Dados reais da Copa 2026. Troque para <code className="text-xs px-1 rounded" style={{ background: "var(--border-subtle)", color: "var(--accent-cyan)" }}>season=2026</code> quando a Copa começar.
+          Painel de estatísticas da Copa do Mundo FIFA 2026.
         </p>
 
         <div
-          className="flex items-center gap-1.5 mt-3 text-xs px-3 py-1.5 rounded-full"
-          style={{ background: "var(--border-subtle)", color: "var(--text-muted)" }}
+          className="flex items-center gap-1.5 mt-3 text-xs px-3 py-1.5 rounded-md"
+          style={{ background: "var(--bg-surface)", color: "var(--text-muted)", border: "1px solid var(--border-subtle)" }}
         >
-          <span>⚡</span>
-          <span>ISR Cache · Atualização a cada 12h</span>
+          <span>🔄</span>
+          <span>Sincronização com API-Football em Produção</span>
         </div>
       </section>
 
@@ -122,30 +106,30 @@ export default function HomePage() {
         {NAV_ITEMS.map((item) => (
           <Link key={item.href} href={item.href} className="block">
             <div
-              className="card flex items-center gap-4 p-4 active:scale-98 transition-transform"
-              style={{ background: item.accentBg, borderColor: item.accentBorder }}
+              className="card flex items-center gap-4 p-4 hover:bg-neutral-900 transition-colors"
+              style={{ background: "var(--bg-card)", borderColor: "var(--border-default)", borderRadius: "var(--radius-lg)" }}
             >
               <div
-                className="flex items-center justify-center rounded-2xl shrink-0"
+                className="flex items-center justify-center rounded-md shrink-0"
                 style={{
-                  width: 52,
-                  height: 52,
-                  background: item.accentBg,
-                  border: `1px solid ${item.accentBorder}`,
-                  fontSize: 26,
+                  width: 48,
+                  height: 48,
+                  background: "var(--bg-surface)",
+                  border: `1px solid var(--border-subtle)`,
+                  fontSize: 24,
                 }}
               >
                 {item.emoji}
               </div>
               <div className="flex-1">
-                <p className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
+                <p className="text-[15px] font-medium" style={{ color: "var(--text-primary)" }}>
                   {item.title}
                 </p>
-                <p className="text-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>
+                <p className="text-[13px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
                   {item.description}
                 </p>
               </div>
-              <span style={{ color: item.accent, fontSize: 18 }}>→</span>
+              <span style={{ color: "var(--text-muted)", fontSize: 16 }}>→</span>
             </div>
           </Link>
         ))}

@@ -12,10 +12,10 @@ interface PlayerCardProps {
 }
 
 const POSITION_COLORS: Record<string, string> = {
-  Forward: "#f43f5e",
-  Midfielder: "#22d3ee",
-  Defender: "#34d399",
-  Goalkeeper: "#fbbf24",
+  Forward: "var(--accent-primary)",
+  Midfielder: "var(--accent-amber)",
+  Defender: "var(--text-secondary)",
+  Goalkeeper: "var(--text-primary)",
 };
 
 export function PlayerCard({ entry, mode, onClick, index }: PlayerCardProps) {
@@ -45,8 +45,8 @@ export function PlayerCard({ entry, mode, onClick, index }: PlayerCardProps) {
         className="card flex items-center gap-3 p-3"
         style={{
           ...(isTop3 && {
-            borderColor: `${rankColors[rank]}30`,
-            background: `linear-gradient(135deg, ${rankColors[rank]}08 0%, var(--bg-card) 60%)`,
+            borderColor: "var(--border-strong)",
+            background: "var(--bg-surface)",
           }),
         }}
       >
@@ -65,7 +65,7 @@ export function PlayerCard({ entry, mode, onClick, index }: PlayerCardProps) {
         {/* Avatar */}
         <div className="relative shrink-0">
           <div
-            className="rounded-xl overflow-hidden"
+            className="rounded-md overflow-hidden"
             style={{
               width: 48,
               height: 48,
@@ -138,7 +138,7 @@ export function PlayerCard({ entry, mode, onClick, index }: PlayerCardProps) {
           <div className="text-center">
             <p
               className="text-xs font-bold tabular-nums"
-              style={{ color: "var(--accent-emerald)" }}
+              style={{ color: "var(--accent-primary)" }}
             >
               {rating.toFixed(1)}
             </p>
@@ -149,16 +149,16 @@ export function PlayerCard({ entry, mode, onClick, index }: PlayerCardProps) {
 
           {/* Primary stat */}
           <div
-            className="flex flex-col items-center justify-center rounded-xl px-3 py-2"
+            className="flex flex-col items-center justify-center rounded-md px-3 py-2"
             style={{
-              background: "rgba(34, 211, 238, 0.08)",
-              border: "1px solid rgba(34, 211, 238, 0.15)",
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-subtle)",
               minWidth: 52,
             }}
           >
             <span
-              className="text-xl font-black tabular-nums leading-none"
-              style={{ color: "var(--accent-cyan)" }}
+              className="text-xl font-bold tabular-nums leading-none"
+              style={{ color: "var(--text-primary)" }}
             >
               {primaryValue}
             </span>

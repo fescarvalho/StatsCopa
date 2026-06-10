@@ -41,12 +41,9 @@ function ScoreHeader({ fixture }: { fixture: MatchFixture }) {
     <div
       className="card p-5 relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, rgba(34,211,238,0.05) 0%, rgba(139,92,246,0.05) 100%)",
+        background: "var(--bg-card)",
       }}
     >
-      {/* Glow blobs */}
-      <div className="absolute -top-10 -left-10 w-28 h-28 rounded-full blur-3xl opacity-15" style={{ background: "var(--accent-cyan)" }} />
-      <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-3xl opacity-10" style={{ background: "var(--accent-violet)" }} />
 
       <div className="relative z-10 flex items-center justify-between gap-2">
         {/* Home */}
@@ -77,7 +74,7 @@ function ScoreHeader({ fixture }: { fixture: MatchFixture }) {
             </div>
           )}
           {isPen && score.penalty && (
-            <p className="text-xs font-medium" style={{ color: "var(--accent-cyan)" }}>
+            <p className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
               ({score.penalty.home} – {score.penalty.away} pens.)
             </p>
           )}
@@ -87,8 +84,8 @@ function ScoreHeader({ fixture }: { fixture: MatchFixture }) {
             </p>
           )}
           <span
-            className="text-[10px] font-semibold px-2 py-0.5 rounded-full mt-1"
-            style={{ background: "var(--border-subtle)", color: "var(--text-muted)" }}
+            className="text-[10px] font-semibold px-2 py-0.5 rounded-md mt-1"
+            style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)", color: "var(--text-muted)" }}
           >
             {STATUS_LABELS[statusShort] ?? STATUS_LABELS[status] ?? status}
           </span>
@@ -136,19 +133,19 @@ function ResumoTab({ fixture }: { fixture: MatchFixture }) {
             { label: "Intervalo", value: `${fixture.score.halftime.home}–${fixture.score.halftime.away}` },
             { label: "Fase", value: fixture.round },
           ].map((item) => (
-            <div key={item.label} className="flex flex-col items-center py-3 rounded-xl"
-              style={{ background: "var(--border-subtle)" }}
+            <div key={item.label} className="flex flex-col items-center py-3 rounded-md"
+              style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
             >
-              <span className="text-base font-black" style={{ color: "var(--accent-cyan)" }}>{item.value}</span>
+              <span className="text-base font-bold tabular-nums" style={{ color: "var(--text-primary)" }}>{item.value}</span>
               <span className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>{item.label}</span>
             </div>
           ))}
         </div>
         {fixture.score.penalty && (
-          <div className="mt-3 flex items-center justify-center gap-2 py-2 rounded-xl"
-            style={{ background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}
+          <div className="mt-3 flex items-center justify-center gap-2 py-2 rounded-md"
+            style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
           >
-            <span className="text-sm font-bold" style={{ color: "var(--accent-violet)" }}>
+            <span className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>
               Pênaltis: {fixture.score.penalty.home} – {fixture.score.penalty.away}
             </span>
           </div>
@@ -248,9 +245,9 @@ function EstatisticasTab({ fixture, stats }: { fixture: MatchFixture; stats: Mat
   return (
     <div className="card p-4 flex flex-col gap-4">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-xs font-bold" style={{ color: "var(--accent-cyan)" }}>{fixture.homeTeam.shortName}</span>
+        <span className="text-xs font-bold" style={{ color: "var(--text-primary)" }}>{fixture.homeTeam.shortName}</span>
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Estatísticas</span>
-        <span className="text-xs font-bold" style={{ color: "var(--accent-violet)" }}>{fixture.awayTeam.shortName}</span>
+        <span className="text-xs font-bold" style={{ color: "var(--text-primary)" }}>{fixture.awayTeam.shortName}</span>
       </div>
 
       {stats.items.map((item) => {
@@ -263,14 +260,14 @@ function EstatisticasTab({ fixture, stats }: { fixture: MatchFixture; stats: Mat
         return (
           <div key={item.label}>
             <div className="flex items-center justify-between mb-1.5">
-              <span className="text-sm font-bold tabular-nums" style={{ color: "var(--accent-cyan)" }}>{item.home}</span>
-              <span className="text-xs" style={{ color: "var(--text-muted)" }}>{item.label}</span>
-              <span className="text-sm font-bold tabular-nums" style={{ color: "var(--accent-violet)" }}>{item.away}</span>
+              <span className="text-sm font-bold tabular-nums" style={{ color: "var(--text-primary)" }}>{item.home}</span>
+              <span className="text-xs font-medium" style={{ color: "var(--text-muted)" }}>{item.label}</span>
+              <span className="text-sm font-bold tabular-nums" style={{ color: "var(--text-primary)" }}>{item.away}</span>
             </div>
-            <div className="flex gap-1 h-1.5 rounded-full overflow-hidden">
-              <div style={{ width: `${hPct}%`, background: "var(--accent-cyan)", borderRadius: "999px 0 0 999px", transition: "width 0.6s ease" }} />
-              <div style={{ flex: 1, background: "var(--border-subtle)" }} />
-              <div style={{ width: `${aPct}%`, background: "var(--accent-violet)", borderRadius: "0 999px 999px 0", transition: "width 0.6s ease" }} />
+            <div className="flex gap-1 h-1.5 rounded-md overflow-hidden">
+              <div style={{ width: `${hPct}%`, background: "var(--accent-primary)", borderRadius: "4px 0 0 4px", transition: "width 0.6s ease" }} />
+              <div style={{ flex: 1, background: "var(--border-strong)" }} />
+              <div style={{ width: `${aPct}%`, background: "var(--text-secondary)", borderRadius: "0 4px 4px 0", transition: "width 0.6s ease" }} />
             </div>
           </div>
         );

@@ -47,7 +47,7 @@ function TeamCombobox({
       <button
         id={id}
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all"
+        className="w-full flex items-center gap-3 px-3 py-3 rounded-md transition-all"
         style={{
           background: "var(--bg-card)",
           border: `1px solid ${open ? accentColor : "var(--border-default)"}`,
@@ -83,7 +83,7 @@ function TeamCombobox({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.97 }}
             transition={{ duration: 0.18 }}
-            className="absolute z-50 w-full mt-1 rounded-xl overflow-hidden"
+            className="absolute z-50 w-full mt-1 rounded-md overflow-hidden"
             style={{
               background: "var(--bg-drawer)",
               border: "1px solid var(--border-default)",
@@ -178,13 +178,13 @@ export function TeamSelectH2H({ teams, defaultTeamAId = 26, defaultTeamBId = 2 }
           teams={teams}
           selectedId={teamAId}
           onSelect={handleSelectA}
-          accentColor="var(--accent-cyan)"
+          accentColor="var(--accent-primary)"
         />
 
         <button
           id="h2h-swap-btn"
           onClick={() => { setTeamAId(teamBId); setTeamBId(teamAId); }}
-          className="flex items-center justify-center rounded-xl shrink-0 mb-px transition-transform active:rotate-180"
+          className="flex items-center justify-center rounded-md shrink-0 mb-px transition-transform active:rotate-180"
           style={{
             width: 40, height: 46,
             background: "var(--border-subtle)",
@@ -203,7 +203,7 @@ export function TeamSelectH2H({ teams, defaultTeamAId = 26, defaultTeamBId = 2 }
           teams={teams}
           selectedId={teamBId}
           onSelect={handleSelectB}
-          accentColor="var(--accent-violet)"
+          accentColor="var(--text-secondary)"
         />
       </div>
 
@@ -213,7 +213,7 @@ export function TeamSelectH2H({ teams, defaultTeamAId = 26, defaultTeamBId = 2 }
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="rounded-2xl animate-pulse"
+              className="rounded-md animate-pulse"
               style={{ height: i === 1 ? 200 : 120, background: "var(--border-subtle)" }}
             />
           ))}

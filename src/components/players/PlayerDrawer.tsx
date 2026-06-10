@@ -27,16 +27,16 @@ function OffensiveTab({ stats }: { stats: PlayerStats }) {
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: "Gols", value: offensive.goals, color: "var(--accent-cyan)" },
-          { label: "Assistências", value: offensive.assists, color: "var(--accent-violet)" },
-          { label: "Hat-tricks", value: offensive.hatTricks, color: "var(--accent-amber)" },
+          { label: "Gols", value: offensive.goals, color: "var(--accent-primary)" },
+          { label: "Assistências", value: offensive.assists, color: "var(--text-secondary)" },
+          { label: "Hat-tricks", value: offensive.hatTricks, color: "var(--text-primary)" },
         ].map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col items-center py-4 rounded-xl"
-            style={{ background: "var(--border-subtle)", border: "1px solid var(--border-default)" }}
+            className="flex flex-col items-center py-4 rounded-md"
+            style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
           >
-            <span className="text-2xl font-black tabular-nums" style={{ color: stat.color }}>
+            <span className="text-2xl font-bold tabular-nums" style={{ color: stat.color }}>
               {stat.value}
             </span>
             <span className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
@@ -82,13 +82,13 @@ function OffensiveTab({ stats }: { stats: PlayerStats }) {
           />
         )}
         <div
-          className="flex items-center justify-between py-3 px-4 rounded-xl"
-          style={{ background: "var(--border-subtle)" }}
+          className="flex items-center justify-between py-3 px-4 rounded-md"
+          style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
         >
-          <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+          <span className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
             Minutos por Gol
           </span>
-          <span className="text-sm font-bold" style={{ color: "var(--accent-cyan)" }}>
+          <span className="text-sm font-bold tabular-nums" style={{ color: "var(--accent-primary)" }}>
             {offensive.minutesPerGoal === 999 ? "—" : `${offensive.minutesPerGoal}'`}
           </span>
         </div>
@@ -206,10 +206,10 @@ function DefensiveTab({ stats }: { stats: PlayerStats }) {
         ].map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col items-center py-3 rounded-xl"
-            style={{ background: "var(--border-subtle)", border: "1px solid var(--border-default)" }}
+            className="flex flex-col items-center py-3 rounded-md"
+            style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
           >
-            <span className="text-xl font-black tabular-nums" style={{ color: stat.color }}>
+            <span className="text-xl font-bold tabular-nums" style={{ color: stat.color }}>
               {stat.value}
             </span>
             <span className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
@@ -286,8 +286,8 @@ export function PlayerDrawer({ playerId, playerName, onClose }: PlayerDrawerProp
               {stats && (
                 <div className="flex items-center gap-3">
                   <div
-                    className="rounded-xl overflow-hidden"
-                    style={{ width: 44, height: 44, background: "var(--border-default)" }}
+                    className="rounded-md overflow-hidden"
+                    style={{ width: 44, height: 44, background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
                   >
                     <Image
                       src={stats.player.photo}
@@ -335,9 +335,9 @@ export function PlayerDrawer({ playerId, playerName, onClose }: PlayerDrawerProp
             {/* Rating banner */}
             {stats && (
               <div
-                className="mx-4 mb-3 flex items-center justify-between px-4 py-2.5 rounded-xl"
+                className="mx-4 mb-3 flex items-center justify-between px-4 py-2.5 rounded-md"
                 style={{
-                  background: "linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.08))",
+                  background: "var(--bg-card)",
                   border: "1px solid var(--border-default)",
                 }}
               >
@@ -362,13 +362,13 @@ export function PlayerDrawer({ playerId, playerName, onClose }: PlayerDrawerProp
                   </div>
                 </div>
                 <div
-                  className="flex flex-col items-center justify-center rounded-xl px-3 py-2"
+                  className="flex flex-col items-center justify-center rounded-md px-3 py-2"
                   style={{
-                    background: "rgba(34,211,238,0.1)",
-                    border: "1px solid rgba(34,211,238,0.2)",
+                    background: "var(--bg-surface)",
+                    border: "1px solid var(--border-subtle)",
                   }}
                 >
-                  <span className="text-xl font-black" style={{ color: "var(--accent-cyan)" }}>
+                  <span className="text-xl font-bold" style={{ color: "var(--accent-primary)" }}>
                     {stats.rating.toFixed(1)}
                   </span>
                   <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>Rating</span>
