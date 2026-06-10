@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TeamSelectH2H } from "@/components/h2h/TeamSelectH2H";
-import { ALL_WC2022_TEAMS } from "@/data/teams.data";
+import { getTeams } from "@/services/teams.service";
+import { TeamGrid } from "@/components/teams/TeamGrid";
 
 export const metadata: Metadata = {
-  title: "Confronto Direto (H2H) — StatsCopa Copa do Mundo 2022",
-  description: "Compare o histórico de confrontos diretos entre quaisquer duas seleções da Copa do Mundo 2022.",
+  title: "Seleções — StatsCopa Copa do Mundo 2022",
+  description: "Todas as 32 seleções da Copa do Mundo FIFA 2022 com estatísticas e elencos.",
 };
 
-export default async function H2HPage() {
-  // teams fetched server-side, passed to client component
-  const teams = ALL_WC2022_TEAMS;
+export const revalidate = 43200;
+
+export default async function SelecoesPage() {
+  const teams = await getTeams();
 
   return (
     <main className="min-h-dvh px-4 pt-4 pb-8">
@@ -21,19 +22,15 @@ export default async function H2HPage() {
         >←</Link>
         <div>
           <h1 className="text-xl font-black tracking-tight leading-none" style={{ color: "var(--text-primary)" }}>
-            Confronto Direto
+            Seleções
           </h1>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-            Escolha duas seleções · H2H Histórico
+            32 seleções · Copa do Mundo 2022
           </p>
         </div>
       </div>
 
-      <TeamSelectH2H
-        teams={teams}
-        defaultTeamAId={26}
-        defaultTeamBId={2}
-      />
+      <TeamGrid teams={teams} />
     </main>
   );
 }

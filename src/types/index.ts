@@ -8,7 +8,7 @@ export interface Team {
   confederation: "CONMEBOL" | "UEFA" | "CONCACAF" | "CAF" | "AFC" | "OFC";
 }
 
-// ─── Match ──────────────────────────────────────────────────────────────────
+// ─── Match (H2H) ─────────────────────────────────────────────────────────────
 export type MatchOutcome = "W" | "D" | "L";
 
 export interface MatchScore {
@@ -127,4 +127,142 @@ export interface LeaderboardEntry {
   matches: number;
   minutesPlayed: number;
   rating: number;
+}
+
+// ─── Standings ───────────────────────────────────────────────────────────────
+export interface StandingRecord {
+  played: number;
+  win: number;
+  draw: number;
+  lose: number;
+  goals: { for: number; against: number };
+}
+
+export interface StandingEntry {
+  rank: number;
+  team: Team;
+  points: number;
+  goalsDiff: number;
+  group: string;
+  form: string;
+  description: "Qualified" | "Eliminated" | null;
+  all: StandingRecord;
+}
+
+export interface StandingGroup {
+  group: string;
+  entries: StandingEntry[];
+}
+
+// ─── Team Profile & Squad ────────────────────────────────────────────────────
+export interface TeamStats {
+  played: number;
+  wins: number;
+  draws: number;
+  losses: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalsDiff: number;
+  points: number;
+  avgPossession: number;
+  avgShotsOnTarget: number;
+  avgPassAccuracy: number;
+  cleanSheets: number;
+  yellowCards: number;
+  redCards: number;
+}
+
+export interface SquadPlayer {
+  id: number;
+  name: string;
+  number: number;
+  position: "Goalkeeper" | "Defender" | "Midfielder" | "Forward";
+  age: number;
+  nationality: string;
+  photo: string;
+  goals: number;
+  assists: number;
+  minutesPlayed: number;
+  rating: number;
+}
+
+export interface TeamProfile {
+  team: Team;
+  coach: string;
+  formation: string;
+  stats: TeamStats;
+  squad: SquadPlayer[];
+}
+
+// ─── Fixture / Match ─────────────────────────────────────────────────────────
+export type MatchStatus =
+  | "NS"       // Not started
+  | "1H"       // First half
+  | "HT"       // Half time
+  | "2H"       // Second half
+  | "ET"       // Extra time
+  | "PEN"      // Penalty
+  | "FT"       // Full time
+  | "AET"      // After extra time
+  | "FT_PEN";  // Full time (penalties)
+
+export interface MatchVenue {
+  name: string;
+  city: string;
+}
+
+export interface MatchFixture {
+  id: number;
+  date: string;
+  status: MatchStatus;
+  statusShort: string;
+  round: string;
+  group?: string;
+  venue: MatchVenue;
+  homeTeam: Team;
+  awayTeam: Team;
+  score: {
+    fulltime: MatchScore;
+    halftime: MatchScore;
+    extratime?: MatchScore | null;
+    penalty?: MatchScore | null;
+  };
+  winner: "home" | "away" | "draw" | null;
+}
+
+// ─── Lineup ──────────────────────────────────────────────────────────────────
+export interface LineupPlayer {
+  id: number;
+  name: string;
+  number: number;
+  position: string;
+  pos: "G" | "D" | "M" | "F";
+  grid: string | null; // "1:1" style grid position
+}
+
+export interface TeamLineup {
+  team: Team;
+  formation: string;
+  startXI: LineupPlayer[];
+  substitutes: LineupPlayer[];
+  coach: string;
+}
+
+export interface MatchLineup {
+  home: TeamLineup;
+  away: TeamLineup;
+}
+
+// ─── Match Statistics ─────────────────────────────────────────────────────────
+export interface MatchStatItem {
+  label: string;
+  home: number | string;
+  away: number | string;
+  homeRaw?: number;
+  awayRaw?: number;
+  maxRaw?: number;
+}
+
+export interface MatchStats {
+  items: MatchStatItem[];
 }
