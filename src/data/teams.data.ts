@@ -1,9 +1,9 @@
 import type { Team } from "@/types";
 
-// ─── Todas as seleções da Copa 2022 ──────────────────────────────────────────
-// league=1, season=2022 (API-Football)
+// ─── Todas as seleções da Copa 2026 ──────────────────────────────────────────
+// league=1, season=2026 (API-Football)
 
-export const ALL_WC2022_TEAMS: Team[] = [
+export const ALL_WC2026_TEAMS: Team[] = [
   // Grupo A
   { id: 882, name: "Qatar", shortName: "QAT", logo: "https://media.api-sports.io/football/teams/882.png", country: "Qatar", confederation: "AFC" },
   { id: 79, name: "Ecuador", shortName: "ECU", logo: "https://media.api-sports.io/football/teams/79.png", country: "Ecuador", confederation: "CONMEBOL" },
@@ -47,5 +47,5 @@ export const ALL_WC2022_TEAMS: Team[] = [
 ];
 
 export function getTeamById(id: number): Team | undefined {
-  return ALL_WC2022_TEAMS.find((t) => t.id === id);
+  return ALL_WC2026_TEAMS.find((t) => t.id === id);
 }

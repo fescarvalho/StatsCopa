@@ -4,8 +4,8 @@ import { getStandings } from "@/services/standings.service";
 import { StandingsGroupCard } from "@/components/standings/StandingsGroup";
 
 export const metadata: Metadata = {
-  title: "Classificação — StatsCopa Copa do Mundo 2022",
-  description: "Tabela de classificação completa por grupos da Copa do Mundo FIFA 2022.",
+  title: "Classificação — StatsCopa Copa do Mundo 2026",
+  description: "Tabela de classificação completa por grupos da Copa do Mundo FIFA 2026.",
 };
 
 export const revalidate = 43200;
@@ -26,7 +26,7 @@ export default async function ClassificacaoPage() {
             Classificação
           </h1>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-            Fase de Grupos · Copa do Mundo 2022
+            Fase de Grupos · Copa do Mundo 2026
           </p>
         </div>
         <div className="ml-auto flex items-center gap-1 text-xs px-2.5 py-1 rounded-full"

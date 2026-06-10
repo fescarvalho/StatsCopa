@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   const profile = await getTeamProfile(Number(id));
   return {
-    title: `${profile?.team.name ?? "Seleção"} — StatsCopa 2022`,
-    description: `Elenco e estatísticas de ${profile?.team.name} na Copa do Mundo FIFA 2022.`,
+    title: `${profile?.team.name ?? "Seleção"} — StatsCopa 2026`,
+    description: `Elenco e estatísticas de ${profile?.team.name} na Copa do Mundo FIFA 2026.`,
   };
 }
 
@@ -64,7 +64,7 @@ export default async function SelecaoProfilePage({ params }: PageProps) {
           <div>
             <h1 className="text-2xl font-black" style={{ color: "var(--text-primary)" }}>{team.name}</h1>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              {team.confederation} · Copa 2022
+              {team.confederation} · Copa 2026
             </p>
             <div className="flex items-center gap-3 mt-1.5">
               <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "var(--border-subtle)", color: "var(--text-secondary)" }}>

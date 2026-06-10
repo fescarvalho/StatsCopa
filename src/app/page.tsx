@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "StatsCopa 2022 — Copa do Mundo FIFA",
-  description: "Estatísticas completas da Copa do Mundo FIFA 2022. Classificação, artilheiros, confrontos históricos, seleções e muito mais.",
+  title: "StatsCopa 2026 — Copa do Mundo FIFA",
+  description: "Estatísticas completas da Copa do Mundo FIFA 2026. Classificação, artilheiros, confrontos históricos, seleções e muito mais.",
 };
 
 const NAV_ITEMS = [
@@ -81,7 +81,7 @@ export default function HomePage() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-cyan)" }} />
-          Copa do Mundo FIFA · Qatar 2022
+          Copa do Mundo FIFA · Qatar 2026
         </div>
 
         <h1
@@ -105,7 +105,7 @@ export default function HomePage() {
         </h1>
 
         <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-          Dados reais da Copa 2022. Troque para <code className="text-xs px-1 rounded" style={{ background: "var(--border-subtle)", color: "var(--accent-cyan)" }}>season=2026</code> quando a Copa começar.
+          Dados reais da Copa 2026. Troque para <code className="text-xs px-1 rounded" style={{ background: "var(--border-subtle)", color: "var(--accent-cyan)" }}>season=2026</code> quando a Copa começar.
         </p>
 
         <div
@@ -152,7 +152,7 @@ export default function HomePage() {
       </section>
 
       <footer className="mt-auto py-4 text-center text-xs" style={{ color: "var(--text-muted)" }}>
-        StatsCopa · API-Football · Copa 2022 → 2026
+        StatsCopa · API-Football · Copa 2026 → 2026
       </footer>
     </main>
   );

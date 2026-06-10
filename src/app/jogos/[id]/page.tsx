@@ -11,9 +11,9 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const fixture = await getFixtureById(Number(id));
-  if (!fixture) return { title: "Jogo — StatsCopa 2022" };
+  if (!fixture) return { title: "Jogo — StatsCopa 2026" };
   return {
-    title: `${fixture.homeTeam.shortName} vs ${fixture.awayTeam.shortName} — StatsCopa 2022`,
+    title: `${fixture.homeTeam.shortName} vs ${fixture.awayTeam.shortName} — StatsCopa 2026`,
     description: `${fixture.round} · ${fixture.homeTeam.name} ${fixture.score.fulltime.home}–${fixture.score.fulltime.away} ${fixture.awayTeam.name}`,
   };
 }
@@ -45,7 +45,7 @@ export default async function JogoPage({ params }: PageProps) {
             {fixture.homeTeam.shortName} vs {fixture.awayTeam.shortName}
           </h1>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-            {fixture.round} · Copa do Mundo 2022
+            {fixture.round} · Copa do Mundo 2026
           </p>
         </div>
       </div>

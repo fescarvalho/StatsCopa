@@ -1,13 +1,13 @@
 import type { MatchFixture, MatchLineup, MatchStats } from "@/types";
-import { ALL_WC2022_TEAMS } from "@/data/teams.data";
+import { ALL_WC2026_TEAMS } from "@/data/teams.data";
 
-const t = (id: number) => ALL_WC2022_TEAMS.find((x) => x.id === id)!;
+const t = (id: number) => ALL_WC2026_TEAMS.find((x) => x.id === id)!;
 
-// ─── Partidas Copa 2022 ───────────────────────────────────────────────────────
+// ─── Partidas Copa 2026 ───────────────────────────────────────────────────────
 const FIXTURES: MatchFixture[] = [
   // ── Final ──
   {
-    id: 855755, date: "2022-12-18T15:00:00Z", status: "FT_PEN", statusShort: "FT",
+    id: 855755, date: "2026-12-18T15:00:00Z", status: "FT_PEN", statusShort: "FT",
     round: "Final", venue: { name: "Lusail Stadium", city: "Lusail" },
     homeTeam: t(26), awayTeam: t(2),
     score: { fulltime: { home: 3, away: 3 }, halftime: { home: 2, away: 0 }, extratime: { home: 0, away: 0 }, penalty: { home: 4, away: 2 } },
@@ -15,7 +15,7 @@ const FIXTURES: MatchFixture[] = [
   },
   // ── Terceiro/Quarto lugar ──
   {
-    id: 855754, date: "2022-12-17T15:00:00Z", status: "FT", statusShort: "FT",
+    id: 855754, date: "2026-12-17T15:00:00Z", status: "FT", statusShort: "FT",
     round: "Terceiro lugar", venue: { name: "Khalifa International Stadium", city: "Ar-Rayyan" },
     homeTeam: t(3), awayTeam: t(5),
     score: { fulltime: { home: 2, away: 1 }, halftime: { home: 1, away: 0 }, extratime: null, penalty: null },
@@ -23,14 +23,14 @@ const FIXTURES: MatchFixture[] = [
   },
   // ── Semifinais ──
   {
-    id: 855752, date: "2022-12-13T19:00:00Z", status: "FT", statusShort: "FT",
+    id: 855752, date: "2026-12-13T19:00:00Z", status: "FT", statusShort: "FT",
     round: "Semifinal", venue: { name: "Lusail Stadium", city: "Lusail" },
     homeTeam: t(26), awayTeam: t(3),
     score: { fulltime: { home: 3, away: 0 }, halftime: { home: 0, away: 0 }, extratime: null, penalty: null },
     winner: "home",
   },
   {
-    id: 855753, date: "2022-12-14T19:00:00Z", status: "FT", statusShort: "FT",
+    id: 855753, date: "2026-12-14T19:00:00Z", status: "FT", statusShort: "FT",
     round: "Semifinal", venue: { name: "Al Bayt Stadium", city: "Al Khor" },
     homeTeam: t(2), awayTeam: t(5),
     score: { fulltime: { home: 2, away: 0 }, halftime: { home: 1, away: 0 }, extratime: null, penalty: null },
@@ -38,28 +38,28 @@ const FIXTURES: MatchFixture[] = [
   },
   // ── Quartas de Final ──
   {
-    id: 855748, date: "2022-12-09T15:00:00Z", status: "FT_PEN", statusShort: "FT",
+    id: 855748, date: "2026-12-09T15:00:00Z", status: "FT_PEN", statusShort: "FT",
     round: "Quartas de Final", venue: { name: "Education City Stadium", city: "Al Rayyan" },
     homeTeam: t(3), awayTeam: t(6),
     score: { fulltime: { home: 1, away: 1 }, halftime: { home: 0, away: 0 }, extratime: { home: 0, away: 0 }, penalty: { home: 4, away: 2 } },
     winner: "home",
   },
   {
-    id: 855749, date: "2022-12-09T19:00:00Z", status: "FT", statusShort: "FT",
+    id: 855749, date: "2026-12-09T19:00:00Z", status: "FT", statusShort: "FT",
     round: "Quartas de Final", venue: { name: "Al Thumama Stadium", city: "Doha" },
     homeTeam: t(1118), awayTeam: t(26),
     score: { fulltime: { home: 2, away: 2 }, halftime: { home: 0, away: 2 }, extratime: { home: 0, away: 0 }, penalty: { home: 3, away: 4 } },
     winner: "away",
   },
   {
-    id: 855750, date: "2022-12-10T15:00:00Z", status: "FT", statusShort: "FT",
+    id: 855750, date: "2026-12-10T15:00:00Z", status: "FT", statusShort: "FT",
     round: "Quartas de Final", venue: { name: "Al Bayt Stadium", city: "Al Khor" },
     homeTeam: t(5), awayTeam: t(27),
     score: { fulltime: { home: 1, away: 0 }, halftime: { home: 0, away: 0 }, extratime: null, penalty: null },
     winner: "home",
   },
   {
-    id: 855751, date: "2022-12-10T19:00:00Z", status: "FT", statusShort: "FT",
+    id: 855751, date: "2026-12-10T19:00:00Z", status: "FT", statusShort: "FT",
     round: "Quartas de Final", venue: { name: "Al Bayt Stadium", city: "Al Khor" },
     homeTeam: t(10), awayTeam: t(2),
     score: { fulltime: { home: 1, away: 2 }, halftime: { home: 0, away: 0 }, extratime: null, penalty: null },
@@ -67,14 +67,14 @@ const FIXTURES: MatchFixture[] = [
   },
   // ── Oitavas de Final ──
   {
-    id: 855740, date: "2022-12-03T15:00:00Z", status: "FT_PEN", statusShort: "FT",
+    id: 855740, date: "2026-12-03T15:00:00Z", status: "FT_PEN", statusShort: "FT",
     round: "Oitavas de Final", venue: { name: "Ahmad Bin Ali Stadium", city: "Al Rayyan" },
     homeTeam: t(5), awayTeam: t(9),
     score: { fulltime: { home: 0, away: 0 }, halftime: { home: 0, away: 0 }, extratime: { home: 0, away: 0 }, penalty: { home: 3, away: 0 } },
     winner: "home",
   },
   {
-    id: 855742, date: "2022-12-05T19:00:00Z", status: "FT", statusShort: "FT",
+    id: 855742, date: "2026-12-05T19:00:00Z", status: "FT", statusShort: "FT",
     round: "Oitavas de Final", venue: { name: "Education City Stadium", city: "Al Rayyan" },
     homeTeam: t(6), awayTeam: t(34),
     score: { fulltime: { home: 4, away: 1 }, halftime: { home: 2, away: 0 }, extratime: null, penalty: null },
@@ -151,7 +151,7 @@ export async function getFixtures(): Promise<MatchFixture[]> {
   /**
    * Em produção:
    * const res = await fetch(
-   *   "https://v3.football.api-sports.io/fixtures?league=1&season=2022",
+   *   "https://v3.football.api-sports.io/fixtures?league=1&season=2026",
    *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
    * );
    */

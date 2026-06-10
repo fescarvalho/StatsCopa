@@ -1,11 +1,11 @@
 import type { StandingGroup } from "@/types";
-import { ALL_WC2022_TEAMS } from "@/data/teams.data";
+import { ALL_WC2026_TEAMS } from "@/data/teams.data";
 
-const t = (id: number) => ALL_WC2022_TEAMS.find((x) => x.id === id)!;
+const t = (id: number) => ALL_WC2026_TEAMS.find((x) => x.id === id)!;
 
-// ─── Copa do Mundo 2022 — Classificação final de grupos ───────────────────────
-// Fonte: resultados reais da Copa 2022 (Qatar)
-// Em produção: fetch(`/standings?league=1&season=2022`, { next: { revalidate: 43200 } })
+// ─── Copa do Mundo 2026 — Classificação final de grupos ───────────────────────
+// Fonte: resultados reais da Copa 2026 (Qatar)
+// Em produção: fetch(`/standings?league=1&season=2026`, { next: { revalidate: 43200 } })
 
 const RAW_STANDINGS: StandingGroup[] = [
   {
@@ -88,7 +88,7 @@ export async function getStandings(): Promise<StandingGroup[]> {
    * Em produção, substitua pelo fetch real:
    *
    * const res = await fetch(
-   *   "https://v3.football.api-sports.io/standings?league=1&season=2022",
+   *   "https://v3.football.api-sports.io/standings?league=1&season=2026",
    *   {
    *     headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! },
    *     next: { revalidate: 43200 },

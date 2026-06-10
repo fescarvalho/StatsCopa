@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TeamSelectH2H } from "@/components/h2h/TeamSelectH2H";
-import { ALL_WC2022_TEAMS } from "@/data/teams.data";
+import { ALL_WC2026_TEAMS } from "@/data/teams.data";
 
 export const metadata: Metadata = {
-  title: "Confronto Direto (H2H) — StatsCopa Copa do Mundo 2022",
-  description: "Compare o histórico de confrontos diretos entre quaisquer duas seleções da Copa do Mundo 2022.",
+  title: "Confronto Direto (H2H) — StatsCopa Copa do Mundo 2026",
+  description: "Compare o histórico de confrontos diretos entre quaisquer duas seleções da Copa do Mundo 2026.",
 };
 
 export default async function H2HPage() {
   // teams fetched server-side, passed to client component
-  const teams = ALL_WC2022_TEAMS;
+  const teams = ALL_WC2026_TEAMS;
 
   return (
     <main className="min-h-dvh px-4 pt-4 pb-8">

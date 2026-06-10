@@ -4,8 +4,8 @@ import { getTeams } from "@/services/teams.service";
 import { TeamGrid } from "@/components/teams/TeamGrid";
 
 export const metadata: Metadata = {
-  title: "Seleções — StatsCopa Copa do Mundo 2022",
-  description: "Todas as 32 seleções da Copa do Mundo FIFA 2022 com estatísticas e elencos.",
+  title: "Seleções — StatsCopa Copa do Mundo 2026",
+  description: "Todas as 32 seleções da Copa do Mundo FIFA 2026 com estatísticas e elencos.",
 };
 
 export const revalidate = 43200;
@@ -25,7 +25,7 @@ export default async function SelecoesPage() {
             Seleções
           </h1>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-            32 seleções · Copa do Mundo 2022
+            32 seleções · Copa do Mundo 2026
           </p>
         </div>
       </div>

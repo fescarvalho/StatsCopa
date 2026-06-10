@@ -1,7 +1,7 @@
 import type { TeamProfile, SquadPlayer } from "@/types";
-import { ALL_WC2022_TEAMS } from "@/data/teams.data";
+import { ALL_WC2026_TEAMS } from "@/data/teams.data";
 
-export { ALL_WC2022_TEAMS };
+export { ALL_WC2026_TEAMS };
 export { getTeamById } from "@/data/teams.data";
 
 // ─── Elencos por seleção ──────────────────────────────────────────────────────
@@ -136,23 +136,23 @@ export async function getTeams() {
   /**
    * Em produção:
    * const res = await fetch(
-   *   "https://v3.football.api-sports.io/teams?league=1&season=2022",
+   *   "https://v3.football.api-sports.io/teams?league=1&season=2026",
    *   { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY! }, next: { revalidate: 43200 } }
    * );
    */
-  return ALL_WC2022_TEAMS;
+  return ALL_WC2026_TEAMS;
 }
 
 export async function getTeamProfile(teamId: number): Promise<TeamProfile | null> {
   /**
    * Em produção:
    * const [teamRes, statsRes, squadRes] = await Promise.all([
-   *   fetch(`/teams?id=${teamId}&season=2022&league=1`, ...),
-   *   fetch(`/teams/statistics?team=${teamId}&season=2022&league=1`, ...),
+   *   fetch(`/teams?id=${teamId}&season=2026&league=1`, ...),
+   *   fetch(`/teams/statistics?team=${teamId}&season=2026&league=1`, ...),
    *   fetch(`/players/squads?team=${teamId}`, ...),
    * ]);
    */
-  const team = ALL_WC2022_TEAMS.find((t) => t.id === teamId);
+  const team = ALL_WC2026_TEAMS.find((t) => t.id === teamId);
   if (!team) return null;
 
   const raw = SQUADS[teamId];

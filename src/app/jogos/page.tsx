@@ -34,7 +34,7 @@ export default async function JogosPage() {
             Jogos
           </h1>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-            Copa do Mundo 2022 · Todos os jogos
+            Copa do Mundo 2026 · Todos os jogos
           </p>
         </div>
       </div>

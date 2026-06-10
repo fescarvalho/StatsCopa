@@ -159,7 +159,7 @@ function ResumoTab({ fixture }: { fixture: MatchFixture }) {
           Local
         </p>
         <p className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>{fixture.venue.name}</p>
-        <p className="text-xs" style={{ color: "var(--text-muted)" }}>{fixture.venue.city}, Qatar — Copa do Mundo 2022</p>
+        <p className="text-xs" style={{ color: "var(--text-muted)" }}>{fixture.venue.city}, Qatar — Copa do Mundo 2026</p>
       </div>
     </div>
   );
