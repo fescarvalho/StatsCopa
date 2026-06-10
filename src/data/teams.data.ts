@@ -1,49 +1,55 @@
 import type { Team } from "@/types";
 
-// ─── Todas as seleções da Copa 2026 ──────────────────────────────────────────
-// league=1, season=2026 (API-Football)
-
+// ─── Todas as 48 seleções da Copa 2026 ──────────────────────────────────────────
 export const ALL_WC2026_TEAMS: Team[] = [
-  // Grupo A
-  { id: 882, name: "Qatar", shortName: "QAT", logo: "https://media.api-sports.io/football/teams/882.png", country: "Qatar", confederation: "AFC" },
-  { id: 79, name: "Ecuador", shortName: "ECU", logo: "https://media.api-sports.io/football/teams/79.png", country: "Ecuador", confederation: "CONMEBOL" },
-  { id: 32, name: "Senegal", shortName: "SEN", logo: "https://media.api-sports.io/football/teams/32.png", country: "Senegal", confederation: "CAF" },
-  { id: 1118, name: "Netherlands", shortName: "NED", logo: "https://media.api-sports.io/football/teams/1118.png", country: "Netherlands", confederation: "UEFA" },
-  // Grupo B
-  { id: 10, name: "England", shortName: "ENG", logo: "https://media.api-sports.io/football/teams/10.png", country: "England", confederation: "UEFA" },
-  { id: 63, name: "Iran", shortName: "IRN", logo: "https://media.api-sports.io/football/teams/63.png", country: "Iran", confederation: "AFC" },
   { id: 1, name: "USA", shortName: "USA", logo: "https://media.api-sports.io/football/teams/1.png", country: "USA", confederation: "CONCACAF" },
-  { id: 730, name: "Wales", shortName: "WAL", logo: "https://media.api-sports.io/football/teams/730.png", country: "Wales", confederation: "UEFA" },
-  // Grupo C
-  { id: 26, name: "Argentina", shortName: "ARG", logo: "https://media.api-sports.io/football/teams/26.png", country: "Argentina", confederation: "CONMEBOL" },
-  { id: 116, name: "Saudi Arabia", shortName: "KSA", logo: "https://media.api-sports.io/football/teams/116.png", country: "Saudi Arabia", confederation: "AFC" },
   { id: 24, name: "Mexico", shortName: "MEX", logo: "https://media.api-sports.io/football/teams/24.png", country: "Mexico", confederation: "CONCACAF" },
-  { id: 21, name: "Poland", shortName: "POL", logo: "https://media.api-sports.io/football/teams/21.png", country: "Poland", confederation: "UEFA" },
-  // Grupo D
-  { id: 2, name: "France", shortName: "FRA", logo: "https://media.api-sports.io/football/teams/2.png", country: "France", confederation: "UEFA" },
-  { id: 23, name: "Australia", shortName: "AUS", logo: "https://media.api-sports.io/football/teams/23.png", country: "Australia", confederation: "AFC" },
-  { id: 35, name: "Denmark", shortName: "DEN", logo: "https://media.api-sports.io/football/teams/35.png", country: "Denmark", confederation: "UEFA" },
-  { id: 97, name: "Tunisia", shortName: "TUN", logo: "https://media.api-sports.io/football/teams/97.png", country: "Tunisia", confederation: "CAF" },
-  // Grupo E
-  { id: 9, name: "Spain", shortName: "ESP", logo: "https://media.api-sports.io/football/teams/9.png", country: "Spain", confederation: "UEFA" },
-  { id: 71, name: "Costa Rica", shortName: "CRC", logo: "https://media.api-sports.io/football/teams/71.png", country: "Costa Rica", confederation: "CONCACAF" },
-  { id: 25, name: "Germany", shortName: "GER", logo: "https://media.api-sports.io/football/teams/25.png", country: "Germany", confederation: "UEFA" },
-  { id: 33, name: "Japan", shortName: "JPN", logo: "https://media.api-sports.io/football/teams/33.png", country: "Japan", confederation: "AFC" },
-  // Grupo F
-  { id: 4, name: "Belgium", shortName: "BEL", logo: "https://media.api-sports.io/football/teams/4.png", country: "Belgium", confederation: "UEFA" },
   { id: 88, name: "Canada", shortName: "CAN", logo: "https://media.api-sports.io/football/teams/88.png", country: "Canada", confederation: "CONCACAF" },
-  { id: 5, name: "Morocco", shortName: "MAR", logo: "https://media.api-sports.io/football/teams/5.png", country: "Morocco", confederation: "CAF" },
-  { id: 3, name: "Croatia", shortName: "CRO", logo: "https://media.api-sports.io/football/teams/3.png", country: "Croatia", confederation: "UEFA" },
-  // Grupo G
+  { id: 26, name: "Argentina", shortName: "ARG", logo: "https://media.api-sports.io/football/teams/26.png", country: "Argentina", confederation: "CONMEBOL" },
   { id: 6, name: "Brazil", shortName: "BRA", logo: "https://media.api-sports.io/football/teams/6.png", country: "Brazil", confederation: "CONMEBOL" },
-  { id: 14, name: "Serbia", shortName: "SRB", logo: "https://media.api-sports.io/football/teams/14.png", country: "Serbia", confederation: "UEFA" },
-  { id: 15, name: "Switzerland", shortName: "SUI", logo: "https://media.api-sports.io/football/teams/15.png", country: "Switzerland", confederation: "UEFA" },
-  { id: 44, name: "Cameroon", shortName: "CMR", logo: "https://media.api-sports.io/football/teams/44.png", country: "Cameroon", confederation: "CAF" },
-  // Grupo H
-  { id: 27, name: "Portugal", shortName: "POR", logo: "https://media.api-sports.io/football/teams/27.png", country: "Portugal", confederation: "UEFA" },
-  { id: 38, name: "Ghana", shortName: "GHA", logo: "https://media.api-sports.io/football/teams/38.png", country: "Ghana", confederation: "CAF" },
   { id: 31, name: "Uruguay", shortName: "URU", logo: "https://media.api-sports.io/football/teams/31.png", country: "Uruguay", confederation: "CONMEBOL" },
+  { id: 49, name: "Colombia", shortName: "COL", logo: "https://media.api-sports.io/football/teams/49.png", country: "Colombia", confederation: "CONMEBOL" },
+  { id: 79, name: "Ecuador", shortName: "ECU", logo: "https://media.api-sports.io/football/teams/79.png", country: "Ecuador", confederation: "CONMEBOL" },
+  { id: 30, name: "Peru", shortName: "PER", logo: "https://media.api-sports.io/football/teams/30.png", country: "Peru", confederation: "CONMEBOL" },
+  { id: 2, name: "France", shortName: "FRA", logo: "https://media.api-sports.io/football/teams/2.png", country: "France", confederation: "UEFA" },
+  { id: 10, name: "England", shortName: "ENG", logo: "https://media.api-sports.io/football/teams/10.png", country: "England", confederation: "UEFA" },
+  { id: 9, name: "Spain", shortName: "ESP", logo: "https://media.api-sports.io/football/teams/9.png", country: "Spain", confederation: "UEFA" },
+  { id: 25, name: "Germany", shortName: "GER", logo: "https://media.api-sports.io/football/teams/25.png", country: "Germany", confederation: "UEFA" },
+  { id: 27, name: "Portugal", shortName: "POR", logo: "https://media.api-sports.io/football/teams/27.png", country: "Portugal", confederation: "UEFA" },
+  { id: 7, name: "Italy", shortName: "ITA", logo: "https://media.api-sports.io/football/teams/7.png", country: "Italy", confederation: "UEFA" },
+  { id: 1118, name: "Netherlands", shortName: "NED", logo: "https://media.api-sports.io/football/teams/1118.png", country: "Netherlands", confederation: "UEFA" },
+  { id: 4, name: "Belgium", shortName: "BEL", logo: "https://media.api-sports.io/football/teams/4.png", country: "Belgium", confederation: "UEFA" },
+  { id: 3, name: "Croatia", shortName: "CRO", logo: "https://media.api-sports.io/football/teams/3.png", country: "Croatia", confederation: "UEFA" },
+  { id: 15, name: "Switzerland", shortName: "SUI", logo: "https://media.api-sports.io/football/teams/15.png", country: "Switzerland", confederation: "UEFA" },
+  { id: 35, name: "Denmark", shortName: "DEN", logo: "https://media.api-sports.io/football/teams/35.png", country: "Denmark", confederation: "UEFA" },
+  { id: 11, name: "Sweden", shortName: "SWE", logo: "https://media.api-sports.io/football/teams/11.png", country: "Sweden", confederation: "UEFA" },
+  { id: 14, name: "Serbia", shortName: "SRB", logo: "https://media.api-sports.io/football/teams/14.png", country: "Serbia", confederation: "UEFA" },
+  { id: 21, name: "Poland", shortName: "POL", logo: "https://media.api-sports.io/football/teams/21.png", country: "Poland", confederation: "UEFA" },
+  { id: 18, name: "Scotland", shortName: "SCO", logo: "https://media.api-sports.io/football/teams/18.png", country: "Scotland", confederation: "UEFA" },
+  { id: 730, name: "Wales", shortName: "WAL", logo: "https://media.api-sports.io/football/teams/730.png", country: "Wales", confederation: "UEFA" },
+  { id: 5, name: "Morocco", shortName: "MAR", logo: "https://media.api-sports.io/football/teams/5.png", country: "Morocco", confederation: "CAF" },
+  { id: 32, name: "Senegal", shortName: "SEN", logo: "https://media.api-sports.io/football/teams/32.png", country: "Senegal", confederation: "CAF" },
+  { id: 36, name: "Egypt", shortName: "EGY", logo: "https://media.api-sports.io/football/teams/36.png", country: "Egypt", confederation: "CAF" },
+  { id: 28, name: "Nigeria", shortName: "NGA", logo: "https://media.api-sports.io/football/teams/28.png", country: "Nigeria", confederation: "CAF" },
+  { id: 44, name: "Cameroon", shortName: "CMR", logo: "https://media.api-sports.io/football/teams/44.png", country: "Cameroon", confederation: "CAF" },
+  { id: 12, name: "Algeria", shortName: "ALG", logo: "https://media.api-sports.io/football/teams/12.png", country: "Algeria", confederation: "CAF" },
+  { id: 38, name: "Ghana", shortName: "GHA", logo: "https://media.api-sports.io/football/teams/38.png", country: "Ghana", confederation: "CAF" },
+  { id: 20, name: "Ivory Coast", shortName: "CIV", logo: "https://media.api-sports.io/football/teams/20.png", country: "Ivory Coast", confederation: "CAF" },
+  { id: 106, name: "Mali", shortName: "MLI", logo: "https://media.api-sports.io/football/teams/106.png", country: "Mali", confederation: "CAF" },
+  { id: 33, name: "Japan", shortName: "JPN", logo: "https://media.api-sports.io/football/teams/33.png", country: "Japan", confederation: "AFC" },
   { id: 34, name: "South Korea", shortName: "KOR", logo: "https://media.api-sports.io/football/teams/34.png", country: "South Korea", confederation: "AFC" },
+  { id: 63, name: "Iran", shortName: "IRN", logo: "https://media.api-sports.io/football/teams/63.png", country: "Iran", confederation: "AFC" },
+  { id: 116, name: "Saudi Arabia", shortName: "KSA", logo: "https://media.api-sports.io/football/teams/116.png", country: "Saudi Arabia", confederation: "AFC" },
+  { id: 23, name: "Australia", shortName: "AUS", logo: "https://media.api-sports.io/football/teams/23.png", country: "Australia", confederation: "AFC" },
+  { id: 882, name: "Qatar", shortName: "QAT", logo: "https://media.api-sports.io/football/teams/882.png", country: "Qatar", confederation: "AFC" },
+  { id: 124, name: "Iraq", shortName: "IRQ", logo: "https://media.api-sports.io/football/teams/124.png", country: "Iraq", confederation: "AFC" },
+  { id: 105, name: "UAE", shortName: "UAE", logo: "https://media.api-sports.io/football/teams/105.png", country: "UAE", confederation: "AFC" },
+  { id: 71, name: "Costa Rica", shortName: "CRC", logo: "https://media.api-sports.io/football/teams/71.png", country: "Costa Rica", confederation: "CONCACAF" },
+  { id: 99, name: "Panama", shortName: "PAN", logo: "https://media.api-sports.io/football/teams/99.png", country: "Panama", confederation: "CONCACAF" },
+  { id: 112, name: "Jamaica", shortName: "JAM", logo: "https://media.api-sports.io/football/teams/112.png", country: "Jamaica", confederation: "CONCACAF" },
+  { id: 95, name: "New Zealand", shortName: "NZL", logo: "https://media.api-sports.io/football/teams/95.png", country: "New Zealand", confederation: "OFC" },
+  { id: 29, name: "Chile", shortName: "CHI", logo: "https://media.api-sports.io/football/teams/29.png", country: "Chile", confederation: "CONMEBOL" },
+  { id: 102, name: "South Africa", shortName: "RSA", logo: "https://media.api-sports.io/football/teams/102.png", country: "South Africa", confederation: "CAF" }
 ];
 
 export function getTeamById(id: number): Team | undefined {
